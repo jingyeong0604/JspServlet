@@ -32,24 +32,40 @@
 	<tr>
 		<td>핸드폰번호</td>
 		<td><input type="tel" pattern="010-[0-9]{4}-[0-9]{4}"
+		
 		placeholder ="번호를 입력하세요" name="phone_number" required="required"></td>
 	</tr>
 	<tr>
 		<td>입사일</td>
-		<td><input type="date" name="hire_date"></td>
+		<td><input type="date" name="hire_date" value="2021-01-11"></td>
 	</tr>
 	<tr>
 		<td>부서</td>
 		<td><input type="number" name="department_id"></td>
 	</tr>
 	<tr>
+		<td>성</td>
+		<td><input type="text" name="last_name"></td>
+	</tr>
+	<tr>
 		<td>커미션</td>
-		<td><input type="number" name="commision_pct"></td>
+		<td><input type="text" name="commision_pct" value="0.2"></td>
 	</tr>
 	<tr>
 		<td>직급</td>
-		<td><input type="text" name="job_id"></td>
+		<td><input type="text" name="job_id" value="IT_PROG"></td>
 	</tr>
+	
+		<tr>
+		<td>매니저아이디</td>
+		<td><input type="number" name="manager_id" value="IT"></td>
+	</tr>
+		<tr>
+		<td>급여</td>
+		
+		<td><input type="number" name="salary" required="required">
+	</tr>
+	
 	<tr>
 		<td colspan="2">
 			<input type="submit" value="직원등록">
