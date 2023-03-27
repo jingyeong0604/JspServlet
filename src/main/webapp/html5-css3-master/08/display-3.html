@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="ko">
+	<head>
+		<meta charset="utf-8">
+		<title>display 속성</title>
+		<style>
+			nav {
+				width:100%;
+				height:60px;
+				background-color: #069;
+			}
+			nav ul {
+				list-style-type: none;
+			}
+			nav ul li {
+				
+				border:1px solid red;
+				display: inline-block;
+				margin:20px;
+			}
+			nav ul li a {
+					color: white;
+					text-decoration: none;
+			}
+			
+			nav ul li:hover{
+				background-color: #B4E5FF;
+			}
+			h2.aa{
+			
+				/*display:none 화면에 보이지 않고 자리 차치도 안함.	*/
+				display: none;
+				
+				/* 자리를 차지함. */
+				visibility: hidden;
+			}
+		</style>
+	</head>
+	<body>
+		<nav>
+			<ul>
+				<li><a href="#">애완견 종류</a></li>
+				<li><a href="#">입양하기</a></li>
+				<li><a href="#">건강돌보기</a></li>
+				<li><a href="#">더불어살기</a></li>
+			</ul>
+			<h2 class="aa">애완견 종류</h2>
+			<h2 class="bb">애완견 종류2</h2>
+		</nav>
+	</body>
+</html>

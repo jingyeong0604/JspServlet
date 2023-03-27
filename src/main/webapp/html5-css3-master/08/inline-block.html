@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="ko">
+	<head>
+		<meta charset="utf-8">
+		<title>블록 레벨과 인라인 레벨</title>
+		<style type="text/css">
+			a{
+				border:1px solid red;
+				background-color: orange;
+				padding: 10px;
+				text-decoration: none;
+				witdth: 300px; /*width: block요소만 가질 수 잇음.*/
+				display: block; 
+				
+				/*block: 1줄 차지, inline: content만큼만 차지 하겠음.];
+				block: 1줄 차지 inline: content만큼
+				iinline-block : block요소 속성 사용을 위해
+				*/
+			}
+		</style>
+	</head>
+	<body>
+	<!-- 블록레벨 -->
+		<h1>시간이란...</h1>
+		<p>내일 죽을 것처럼 오늘을 살고 </p>
+		<p>영원히 살 것처럼 <span style="color:red">내일을 꿈꾸어라.</span> </p>	<!-- p는 한줄을 다 차지함. -->
+		<!-- 인라인 레벨: span, a, img -->
+		<a href="http://www.daum.net">daum</a>
+		<a href="http://www.naver.com">naver</a>
+		<img alt="" src="images/pet.png">
+		<img alt="" src="images/pet.png">
+		<img alt="" src="images/pet.png">
+
+</body>
+</html>

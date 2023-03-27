@@ -13,10 +13,51 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href="cssgroup.css" rel="stylesheet" type="text/css">
+<style>
+	#container{
+
+		border: 1px #FF9CBB;
+		width: 940px;
+		margin:0 auto; /*중간정렬*/
+		border-top: 1px #FF9CBB;
+		border-bottom:1px #FF9CBB;
+		
+	}
+	tbody{
+		border-top-left-radius: 15px;
+		}
+	
+	h1{
+		padding: 20px;
+		text-align: center;	
+	}
+	
+	thead tr{
+		background-color:#FFDCE1;
+		padding: 10px;
+		text-align: center;	
+	}
+	tbody tr{
+		text-align:center;
+		background-color: #FFF0F5;
+	}
+	tr:hover{
+		background-color:#FF9CBB;
+		cursor: pointer;
+	}
+</style>
 </head>
+
 <body>
-<h1>직원 목록</h1>
-<table>
+<div id="container" >
+<h1 >직원 목록</h1>
+
+<button 
+onclick="location.href='emp_insert.html"
+type="button" class="btn btn-success">직원등록</button>
+<a type="button" class="btn btn-success" href="emp_insert.html">직원등록</a>
+<table  class="table table-hover">
  <thead>
  	<tr>
  	 <th>직원번호</th>
@@ -49,6 +90,8 @@
   </tr>
   <%} %>
  </tbody>
+
 </table>
+</div>
 </body>
 </html>
