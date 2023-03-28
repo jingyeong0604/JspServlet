@@ -21,14 +21,25 @@
 			background:blue;
 			color:white;
 		}
-	[class ~="button"] {
+	/*[속성~=값] 선택자 여러 속성 값 중에 해당 값이 포함되어 있는 요소를 찾아 스타일 적용*/
+	
+	a [class ~="button"] {/*태그이름 a를 붙이면 a 태그인것만 적용가능하기 때문에 버튼에 적용되지 않음.
+	
+	->태그 이름을안줫을때는 모든 태그를 뜻함.
+	
+	*/
 		border: 2px solid black;
 		box-shadow: rgba(0,0,0,0.4) 5px 5px;
 	}
+	
+	.orange{ background-color: orange}
+	.red{ color: red;}
+	
 </style>
 </head>
 
 <body>
+	<button class="button orange red">okkk</button><!-- 버튼과 orange속성 둘다 가지고 싶을때 -->
 	<ul>
 		<li><a href="#">메뉴 1</a></li>
 		<li><a href="#">메뉴 2</a></li>

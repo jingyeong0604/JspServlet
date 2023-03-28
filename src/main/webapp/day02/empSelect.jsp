@@ -54,9 +54,9 @@
 <h1 >직원 목록</h1>
 
 <button 
-onclick="location.href='emp_insert.html"
+onclick="location.href='emp_insert.html'"
 type="button" class="btn btn-success">직원등록</button>
-<a type="button" class="btn btn-success" href="emp_insert.html">직원등록</a>
+<a type="button" class="btn btn-success" href="emp_insert.html">직원등록</a> <!-- a버튼을 사용한 이유는 href를 사용하기 위해서 -->
 <table  class="table table-hover">
  <thead>
  	<tr>

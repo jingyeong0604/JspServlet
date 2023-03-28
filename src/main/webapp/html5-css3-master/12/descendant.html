@@ -4,13 +4,66 @@
 <meta charset="utf-8">
 <title>요안도라</title>
 <style>
-	#container ul {
+/*
+CSS selector 충돌: 우선순위 include>#id>.class>tag이름
+우선순위가 같다면 나중것으로 덮어쓰기가 된다. 
+*/
+	#container ul {/*띄어쓰기는 부모 요소에 포함된 모든 하위 요소에 스타일이 적옹됨.*/
 		border: 1px dotted blue; /* #container 요소의 모든 하위 ul 요소에 파란 1px 실선 */
 	}
+	
+	#container>ul{/*section으로 하니까 안먹혀서 우선순위가 높은 id값인 container를 이용해서 적용함.*/
+		border: 2px dotted green;
+		color:red;
+	}
+	/*부모 요소 container 자식요소 ul*/
+	
+	div>p{
+		background-color: orange;
+	}
+	/*인접 형제 선택자
+	같은 부모를 가진 형제 요소 중 첫 번째 동생 요소에만 스타일 적용
+	h1 요소 다음에 오는 p요소들중 첫번째 p요소에만 밑줄 적용	
+	*/
+	h1 + p{
+		font-size:30px;
+	}
+	
+	/*
+	형제 선택자
+	모든 형제 요소에 다 적용됨.
+	h1 요소 다음에 오는 모든 형제 p요소에 밑줄 적용됨.
+	*/
+	h1~p{
+		text-decoration:underline;
+	}
+	
+	/*속성 선택자
+	지정한 속성을 가진 요소를 찾아 스타일 적용함.
+	*/
 </style>
 </head>
 
 <body>
+  <div>
+  	<h1>h1이다.</h1>
+  	<p>AAA</p>
+  	<p>AAA</p>
+  	<p>AAA</p>
+	<header>
+		<p>BBB</p>
+		<p>BBB</p>
+		<p>BBB</p>
+	</header>
+  
+  </div>
+  <ul>
+  	<li>A1</li>
+  	<li>A1</li>
+  	<li>A1</li>
+  	<li>A1</li>
+  	<li>A1</li>
+  </ul>
   <section id="container">
   <header><h1>예약 방법 및 요금</h1></header>
   <p> 요안도라에 예약하려면?

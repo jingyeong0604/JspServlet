@@ -14,10 +14,12 @@
 				font-size:15px;
 				font-weight:600; 
 			}
+			/*요소를 사용할 수 있을 때와 없을 때의 스타일 지정*/
 			input:disabled {		 
 				background:#ddd;
 				border:1px #ccc solid;
 			}
+			/*바로 다음에 나오는 span만 포함됨.*/
 			input:checked + span {
 				color:blue;
 			}
@@ -35,7 +37,23 @@
 				<label><input type="radio" name="subject" value="speaking"><span>회화</span></label>
 				<label><input type="radio" name="subject" value="grammar"><span>문법</span></label>
 				<label><input type="radio" name="subject" value="writing"><span>작문</span></label> 
-			</fieldset>		
+			</fieldset>
+			<fieldset>
+				<legend>checkbox연습..서로 독립적임.</legend>
+				<label>
+					<input type="checkbox" name="fruit" value="사과">
+					<span>사과1</span>
+				</label>
+				<label>
+					<input type="checkbox" name="fruit" value="사과">
+					<span>사과2</span>
+				</label>				
+				<label>
+					<input type="checkbox" name="fruit" value="사과">
+					<span>사과3</span>
+				</label>
+</fieldset>
+					
 		</form>
   </body>
 </html>

@@ -18,18 +18,28 @@
 			color: blue;
 			text-decoration: none;
 		}
+		/*[속성] 선택자 지정한 소성을 가진 요소를 찾아 스타일 적용함.*/
 	 a[href] {
 		 background:yellow;
+	 }
+	 
+	 .mystyle{ border:1px solid green;}
+	 a[class] {color:red;}
+	 
+	 /*[속성=값] 선택자 주어진 속성과 속성 값이 일치하는 요소를 찾아 스타일 적용*/
+	 
+	 a[href="http://www.w3.com"]{
+	 	font-size: 40px;
 	 }
 </style>
 </head>
 
 <body>
 	<ul>
-		<li><a>메인 메뉴 : </a></li>
-		<li><a href="#">메뉴 1</a></li>
-		<li><a href="#">메뉴 2</a></li>
-		<li><a href="#">메뉴 3</a></li>
+		<li><a class="mystyle">메인 메뉴 : </a></li>
+		<li><a href="#" class="mystyle">메뉴 1</a></li>
+		<li><a href="http://www.w3.com">메뉴 2</a></li>
+		<li><a href="#" class="mystyle">메뉴 3</a></li>
 		<li><a href="#">메뉴 4</a></li>
 	</ul>
   </body>

@@ -2,6 +2,7 @@
 <html lang="ko">
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>가상 클래스</title>
 	<style>
 		#container {
@@ -21,13 +22,45 @@
 			padding:10px;
 			padding-left:20px;
 		}
+		
+		/*띄어쓰기 -> 자손 뒤에서 홀수번째
+		 인덱스는 0부터 시작함.
+		*/
 		table tr:nth-child(2n+1) {
 			background:lightgray;
 			color:black;
 		}
+		
+		table tr:nth-child(even) {
+			background:lightblue;
+			color:black;
+		}
+		/*자식 중에서 짝수인거*/		
+		div p:nth-child(2n){
+		/*div의 자손으로 짝수번째 나오는 p*/
+			color: orange;
+		}
+		/*타입 중에서 짝수인거*/		
+		div p:nth-type(2n){
+		/*div의 자손으로 p들 중에서 짝수번째p*/
+			color: orange;
+		}
+		
+		
 	</style>
 </head>
 <body>
+	<div>
+		<p>AAA</p>
+		<p>AAA</p>
+		<p>AAA</p>
+		<p>AAA</p>
+		<p>AAA</p>
+		<p>AAA</p>
+	
+	</div>
+
+
 	<div id="container">
 		<h1>건강에 좋은 건강 식품</h1>
 		<table>
