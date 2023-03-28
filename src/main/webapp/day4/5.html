@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<!-- HTML주석 -->
+<script>
+//js주석
+/* */
+</script>
+<style>
+/*inline, internal, external */
+/*inline 태그 안에 internal h1안에*/
+h1{ background-color: orange;}
+</style>
+</head>
+<body>
+	<h1 style="color:blue;">JavaScript</h1>
+	<button id="btn1" onClick="call1()">for문</button>
+	<button id="btn2" onClick="call1()">for문2</button>
+	<button id="btn3" onClick="call3()">for문2</button>
+	<button id="btn4" onClick="call4()">for문2</button>
+	<hr>
+	<div id="here">여기</div>
+	<script>
+		var target= document.querySelector("#here");
+		document.querySelector("#btn1").onclick=call; //callback함수
+		document.querySelector("#btn2").onclick=call2;
+		document.querySelector("#btn3").onclick=call3;
+		document.querySelector("#btn4").onclick=call4;
+		
+		function call4(){
+			var arr=[100,200,300];
+			var sum=0;
+			for(let data of arr){//하나씪 data를 추출하는게 of임
+				sum+=data;
+			}
+			alert(sum);
+		}
+		
+		function call2(){
+			var now=new Date().getTime();//현재 시각을 long으로 받기
+			
+			for(var i=0; new Date().getTime()<now+1000; i++){
+			
+				
+			}
+			console.log(i);
+		}
+		
+		function call(){
+			target.innerHTML ="For문 연습";
+			//자바는 배열에 같은 타입만 가능
+			//자바스크립트는 여러타입 배열에 저장 가능.
+			//Number, string, boolean, undefined, function, object
+			
+			var arr=[100,3.14,"JavaScript",10>20, 
+				function() {alert("나는 함수이다.");},[10,20,30],{"이름":"홍길동",age:20}];
+			for(let i=0; i<arr.length; i++){
+				target.innerHTML +="<br>"+ arr[i]+"---"+typeof(arr[i]);
+				if(typeof(arr[i])==="function"){
+					arr[i]();//()에 의해 function실행된다.
+				}
+				if(i==arr.length-1){
+					alert(arr[i].이름);
+				}
+			}	
+		}
+		function call3(){
+			target.innerHTML ="For문 연습";
+			//자바는 배열에 같은 타입만 가능
+			//자바스크립트는 여러타입 배열에 저장 가능.
+			//Number, string, boolean, undefined, function, object
+			
+			var arr=[100,3.14,"JavaScript",10>20, 
+				function() {alert("나는 함수이다.");},[10,20,30],{"이름":"홍길동",age:20}];
+			for(let i in arr){
+				target.innerHTML +="<br>"+ arr[i]+"---"+typeof(arr[i]);
+				if(typeof(arr[i])==="function"){
+					arr[i]();//()에 의해 function실행된다.
+				}
+				if(i==arr.length-1){
+					alert(arr[i].이름);
+				}
+			}	
+		}
+	</script>
+</body>
+</html>
