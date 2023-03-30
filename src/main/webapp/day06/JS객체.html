@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://cdn.jsdelivr.net/npm/underscore@latest/underscore-umd-min.js">
+</script>
+<script>
+window.onload = function(){
+    //alert("load끝");
+
+    btn1.onclick = call;
+    btn2.onclick = call2;
+    btn3.onclick = call3;
+    btn4.onclick = call4;
+    btn5.onclick = call5;
+    btn6.onclick = call6;
+    btn7.onclick = call7;
+    btn8.onclick = call8;
+    btn9.onclick = call9;
+    btn10.onclick = call10;
+
+};
+//생성자 함수
+function Student(name, age, java, sql, jdbc){
+    this.name = name;
+    this.age = age;
+    this.java = java;
+    this.sql = sql;
+    this.jdbc = jdbc;
+    
+}
+function call(){
+	var a=10; //기본형
+	var b= new Number(10);//객체
+	console.log(a, typeof(a));
+	console.log(a, typeof(b));
+	console.log(a+b);
+	
+	Number.prototype.myFunction = function(){alert("함수추가");};
+	// Number는 내장객체 ... 공유영역에 함수추가가능
+	b.myFunction2 = function(){alert("함수추가2");};//OK
+	b.myFunction2 = function(){alert("함수추가2");};//불가
+	
+	a.myFunction();//OK
+	//b.myFunction();//error
+	b.myFunction2();//OK
+	//b.myFunction2();//error
+	
+}
+function call2(){
+	var arr=[100, 50, 70, 200];
+	arr.push(300);
+	var str="";
+	
+	arr.sort(function(a,b){return a-b;});
+	
+	arr.forEach((item, index)=>{
+		str+=`<p>${index}번째 ${item}</p>`;
+	});
+	
+	here.innerHTML = str;
+	
+}
+function call3(){
+		var arr=[];
+	   arr.push(new Student("배동열5",1, 100, 99, 88));
+	    arr.push(new Student("배동열2",2, 99, 99, 88));
+	    arr.push(new Student("배동열4",3, 100, 99, 99));
+	    arr.push(new Student("배동열3",4, 88, 66, 88));
+	    arr.push(new Student("배동열1",5, 55, 99, 44));
+	    
+	    
+	    Student.prototype.getSum = function(){
+	        return this.java + this.sql + this.jdbc;
+	    };
+	    Student.prototype.getAvg = function(){
+	        return this.getSum()/3;
+	    };
+	    Student.prototype.toString = function(){
+	        return `이름은 ${this.name}.${this.age} ${this.java} 
+	          ${this.sql} ${this.jdbc}... 총점:${this.getSum()} 평균은 ${this.getAvg()}`;
+	    };
+	
+	    
+	    // arr.sort((a,b)=>b.getSum()-a.getSum());
+	    // 이름순으로 sort하기
+	    arr.sort((a,b)=>b.getSum()-a.getSum());
+	    
+	    /*arr.sort((a,b)=>{
+	    		if(a==b) return 0;
+	    		if(a>b) return 1;
+	    		return -1;
+	    });*/
+	    
+	    arr.sort((a,b)=>b.getSum()-a.getSum());
+	    
+	    arr= arr.slice(0,2);//0<= <2
+	    
+	    for(var index in arr){
+	    	here.innerHTML += `<p>${arr[index]}</p>`;
+	    	
+	    }
+}
+function call4(){
+
+	
+}
+function call5(){
+	
+}
+function call6(){
+
+}
+function call7(){
+
+}
+function call8(){
+
+}
+function call9(){
+
+	
+}
+function call10(){}
+
+</script>
+</head>
+<body>
+<h1>BOM(Broser Object Model)에 대하여~~</h1>
+<button id="btn1">window</button>
+<button id="btn2">document</button>
+<button id="btn3"> Loccation</button>
+<button id="btn4">navigator</button>
+<button id="btn5">hisory</button>
+<button id="btn6">fiscrreen함수</button>
+<button id="btn7">reduce함수</button>
+<button id="btn8">this연습</button>
+<button id="btn9">function</button>
+<button id="btn10">function</button>
+<hr>
+<div id="here">여기</div>
+</body>
+</html>
+접

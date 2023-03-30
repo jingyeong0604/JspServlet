@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>function연습</title>
+</head>
+<body onload="here.innerHTML='JS에서 접근';"><!--load가 끝난다음에 수행하라  -->
+<script>
+	console.log("1.js");
+	window.onload=f1; //f1함수 이름을 load후에 수행하라는 의미
+	
+	
+	function call(ff){
+		ff();
+		ff();
+		
+	}
+	
+	function f1(){
+		here.innerHTML='JS에서 접근!!!###';
+		//callback: 행위는 내가 결정, 실행 시점은 받은쪽에서 결정함.
+		//콜백 ->실행시점은 받은애가 결정한다. 나는 함수를 정의함.
+		btn8.onclick=call;
+		
+		btn7.onclick=function(){
+			clearInterval(timer);
+		};
+		btn6.onclick=function(){
+			
+			timer = setInterval(function(){
+				here.innerHTML += new Date();
+			}, 1000);//함수function을 만들어서
+			//setInterval에게 주면 setInterval은 function을 실행 ->콜백
+			
+			
+		};
+		
+		btn5.onclick=function(){
+			
+			var myFunction = function(){
+				here.innerHTML += "<p>JS배우기</p>";
+			};
+			call(myFunciton);
+			
+		};
+		
+		btn4.onclick=function(){
+			var alert=100;
+			alert(alert);
+		};
+		
+		
+		btn3.onclick=function(){
+			here.innerHTML=sumAll(1,2,3,4,5,6,7,8,9,10);
+		}
+		
+		btn2.onclick=function(){
+			var a=Array();
+			var b=Array(5);
+			var c=Array(100,200,300);
+			here.innerHTML=a.length;
+			here.innerHTML+="<br>" + b.length;
+			here.innerHTML+="<br>" + c;
+			
+			
+		};
+		
+		btn1.onclick=function(){
+			here.innerHTML = sum(10,20,30);//매개변수 남는경우
+			here.innerHTML += "<br>" +sum(10);//매개변수 모자른경우
+			here.innerHTML += "<br>" +sum(10,20);
+			
+		};
+		
+	};
+	function sumAll(){
+		//내장변수 arguments
+		var total=0;
+		for(let i=0; i<arguments.length; i++){
+			total+=arguments[i];
+		}
+		return total;
+	}
+	function sumAll(){
+		//내장변수 arguments
+		var total=0;
+		for(let i=0; i<arguments.length; i++){
+			total+=arguments[i];
+		}
+		return total;
+	}
+	function sumAll(){
+
+		return 999;
+	}
+	
+	function sum(a,b){
+		return b;
+	}
+</script>
+<hr>
+<button id="btn1">함수의 매개변수</button>
+<button id="btn2">array</button>
+<button id="btn3">arguments...내부함수</button>
+<button id="btn4">이름충돌</button>
+<button id="btn5">callback함수</button>
+<button id="btn6">callback함수(타이머시작)</button>
+<button id="btn7">callback함수(타이머시작)</button>
+<button id="btn8">callback함수(타이머시작)</button>
+<button id="btn9">callback함수(타이머시작)</button>
+<hr>
+</body>
+<script>
+	console.log("2.js");
+</script>
+<h1>JS function</h1>
+<div id="here">여기</div>
+<script>
+	console.log("3.js");
+	//here.innerHTML="JS에서 접근";
+</script>
+</html>

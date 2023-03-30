@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+//정의는 내가 하고 호출은 받은쪽에서 한다. (callback)
+//지역변수는 지역을 떠나면 사라짐.
+//클로저를 이용하면 규칙 위반 가능
+//지역변수를 포함한 함수를 return 하면 계속 유효하다.
+
+function closureTest(b){
+	var a=100;
+	return function(){
+		var c= 200;
+		return a+b+1000;
+	};
+	
+}
+
+
+function add(start){
+	var count=start;
+	return function(){
+		count++; return count;	
+	}	
+	//함수를 리턴하면 count라는 변수가 사라지지 않고 존재함.
+}
+
+window.onload=function(){
+
+	btn11.onclick=function(){
+		var score=[100,99,50,88];
+		score.forEach(function(elt, index, arr){
+			here.innerHTML+="<br>"+index+ "번쨰"+ elt;
+		});//()=>{}
+		
+	};
+	function call() {
+			for (var i = 0; i < 3; i++) {
+				setTimeout(function() {
+					alert(i);
+				}, 0);
+			}
+		}
+		btn8.onclick=call;
+		btn9.onclick=call2;
+		btn10.onclick=call3;
+		
+		function call2() {
+			for (var i = 0; i < 3; i++) {
+				(function(aa) {//aa는 지역변수 각자의 변수에 aa가 들어감.
+					setTimeout(function() {
+						alert(aa);
+					}, 0);
+				})(i);
+			}
+		}
+		
+		function call3() {
+			for (let i = 0; i < 3; i++) {
+				//let는 클로져지원.-> 중괄호 안에서만 유효한 변수
+					setTimeout(function() {
+						alert(i);
+						//let는 block{}내에서 변수가 유효,
+						//각자의 i가 생김.
+					}, 0);
+	
+			}
+		}
+
+		var f1 = add(0);
+		var f2 = add(100);
+		btn6.onclick = function() {
+
+			here.innerHTML = f1();
+		};
+
+		btn7.onclick = function() {
+
+			here.innerHTML = f2();
+		};
+
+		btn5.onclick = function() {
+			var f = closureTest(300);
+			here.innerHTML = f();//지역변수를 떠나와도 지역변수를 계속 사용할 수 있음->close
+		};
+
+		btn4.onclick = function() {
+			clearInterval(timer);
+		};
+
+		btn3.onclick = function() {
+			setInterval(function() {
+				here.innerHTML = new Date();
+			}, 1000)
+
+		};
+
+		btn2.onclick = function() {
+			call(function() {
+				alert("익명함수입니다.");
+			});//익명함수
+		};
+		btn1.onclick = function() {
+			for ( var prop in window) {//window에 무슨 속성이 있는지 다 가져오는것.
+				here.innerHTML += "<br>" + prop + "==>" + window[prop];
+			}
+		};
+		//이벤트 속성= 이벤트 핸들러
+	};
+	function call(f) {
+		f();
+	}
+</script>
+</head>
+<body>
+<h1>Function/ BOM</h1>
+<button id="btn1">window객체</button>
+<button id="btn2">콜백함수</button>
+<button id="btn3">Timer시작</button>
+<button id="btn4">Timer종료</button>
+<button id="btn5">closer</button>
+<button id="btn6">closure증가(start 0)</button>
+<button id="btn7">closure증가(start 100)</button>
+<button id="btn8">closure증가(var)</button>
+<button id="btn9">closure증가(start 100)</button>
+<button id="btn10">closure증가(start 100)</button>
+<button id="btn11">closure증가(자동)</button>
+<hr>
+<div id="here">여기</div>
+</body>
+</html>

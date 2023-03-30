@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://cdn.jsdelivr.net/npm/underscore@latest/underscore-umd-min.js">
+</script>
+<script>
+window.onload = function(){
+    //alert("load끝");
+
+    btn1.onclick = call;
+    btn2.onclick = call2;
+    btn3.onclick = call3;
+    btn4.onclick = call4;
+    btn5.onclick = call5;
+    btn6.onclick = call6;
+    btn7.onclick = call7;
+    btn8.onclick = call8;
+    btn9.onclick = call9;
+    btn10.onclick = call10;
+
+};
+//생성자 함수
+function Student(name, age, java, sql, jdbc){
+    this.name = name;
+    this.age = age;
+    this.java = java;
+    this.sql = sql;
+    this.jdbc = jdbc;
+    
+}
+function call(){
+	var str="";
+	for(let prop in window){
+		sr+=prop ="---->"+ window[prop];
+	}
+	here.innerHTML = str;
+}
+function call2(){
+	var str="";
+	for(let prop in window){
+		sr+=prop ="---->"+ window[prop];
+	}
+	here.innerHTML = str;
+	
+}
+function call3(){
+	var str="";
+	for(let prop in location){
+		sr+=prop ="---->"+ window[prop];
+	}
+	here.innerHTML = str;
+}
+function call4(){
+	//배열을 문자열로 만들기
+	var str="";
+	for(let prop in navigator){
+		sr+=prop ="---->"+ window[prop];
+	}
+	here.innerHTML = str;
+}
+function call5(){
+	var str="";
+	for(let prop in history){
+		sr+=prop ="---->"+ window[prop];
+	}
+	here.innerHTML = str;
+}function call6(){
+	
+};
+function call6(){
+	var arr=[6,7,8,1,2,3,4,5,9,10];
+	var result= arr.filter((item)=>item%3==0);
+	here.innerHTML = result.join("****");
+}
+function call7(){
+	var arr=[6,7,8,1,2,3,4,5,9,10];
+	var result = arr.reduce((before, current)=>{
+		here.innerHTML += `<p>${before}----${current}</p>`;
+		return before+current;
+	});
+	
+	here.innerTHML +=result;
+	
+}
+function call8(){
+	var obj = {};
+	obj.name="경윤";
+	obj.address="홍대";
+	obj.age=25;
+	let jsonStr = JSON.stringify(obj);
+	console.log(obj, typeof(obj));
+	console.log(jsonStr, typeof(jsonStr));
+	console.log(obj.name);
+	console.log(jsonStr.name);//undefined
+	//JavaScript에서 서버로 전송하기 위해 JSON으로 변경한다.
+	//---------------------------------//
+	//서버에서 Json으로 보내면 자바 스트립트 객체로 변경한다.
+	var obj2=JSON.parse(jsonStr);
+	console.log(obj2.name);
+	
+	
+}
+function call9(){
+	var stooges = [{name: 'moe', age: 40}, {name: 'curly', age: 60}];
+	stooges = _.sortedBy(stooges, 'name');s
+	for(var index in stooges){
+		here.innerHTML +=`<p>${stooges[index].name}-----{stooges[index].age}
+	}
+	location.href="";
+	
+}
+function call10(){}
+
+</script>
+</head>
+<body>
+<h1>JS Object에 대하여~~</h1>
+<button id="btn1">Number객체</button>
+<button id="btn2">Array객체</button>
+<button id="btn3">Array Sort</button>
+<button id="btn4">Array Join</button>
+<button id="btn5">map함수</button>
+<button id="btn6">filter함수</button>
+<button id="btn7">reduce함수</button>
+<button id="btn8">this연습</button>
+<button id="btn9">function</button>
+<button id="btn10">function</button>
+<hr>
+<div id="here">여기</div>
+</body>
+</html>
+접
