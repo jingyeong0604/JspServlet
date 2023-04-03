@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<friends>
+	<friend>
+		<name>찬역</name>
+		<major>컴공</major>
+	</friend>
+	<friend>
+		<name>택주</name>
+		<major>영문</major>
+	</friend>
+		<friend>
+		<name>강현</name>
+		<major>국문</major>
+	</friend>
+	
+</friends>

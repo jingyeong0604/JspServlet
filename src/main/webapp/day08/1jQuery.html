@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<!-- 웹사이트가 jQueury library를 갖고 있는 경우 -->
+<!-- <script src="../js/jquery-3.6.4.min.js"></script> -->
+
+<!-- cdn을 사용하는 방법 -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<script>
+
+//문서가 로드가 끝나면 하겠다.
+//문서가 load후에 function()을 수행한다의 의미이다.
+$(function (){
+	$("h1").css("backgroundColor","orange");
+	$("h2").css({"backgroundColor":"lightpink","color":"lightblue"});
+	$("div").css("border", "1px solid gray");
+	//$("p:nth-child(2n)").css("backgroundColor", "lightpink");//자식으로서 짝수번째 h1부터 시작함.
+	$("p:nth-of-type(2n)").css("backgroundColor", "lightpink");//타입으로서 짝수번째 (p중에 짝수)
+	
+	
+});
+
+
+ 
+</script>
+</head>
+<body>
+<h1>jQuery연습</h1>
+<h2>jQuery연습</h2>
+<h2>jQuery연습</h2>
+<p>p1</p>
+<p>p2</p>
+<p>p3</p>
+<p>p4</p>
+<p>p5</p>
+
+<div>
+	<h2>jQuery연습</h2>
+	<p>p1</p>
+	<p>p2</p>
+	<p>p3</p>
+	<p>p4</p>
+	<p>p5</p>
+</div>
+</body>
+</html>

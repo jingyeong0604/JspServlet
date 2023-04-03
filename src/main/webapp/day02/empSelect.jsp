@@ -12,7 +12,7 @@
 <!DOCTYPE html>
 <html>
 <script>
-	$(function(){
+	
 	$("thead tr th").click(function(e) {
 		var trNum = $(this).closest("th").prevAll().length;
 		//$(this).find(" ~ th").css("background-color", "white");
@@ -25,29 +25,33 @@
 			//신규선택의 색깔 바꾸기
 			$(col).css("background-color", "orange");
 		});
-		});
 	});
 	
 	
 	//짝수 row선택
-	$(function(){
+
 		$("#btn1").click(function(){
-			console.log("aa");
-			$("tr:odd").css("background-color", "white");
+			$("tr:nth-child(2n)").css("background-color", "lightgray");
+			$("tr:nth-child(2n+1)").css("background-color", "lightgray");
+			
 			
 		});
 		
-	})
+	
 	
 
 	//이름 S로 시작하는 직원
-	$(function2(){
-		
-		$('#btn2').click(function2(){
+
+		$('#btn2').click(function(){	
 			$('select[id^="S"]').val("${defaultListRowCnt}");		
 		});
-
-	})
+		$('#btn2').click(function2(){
+			$('select[id^="S"]').val("${defaultListRowCnt}");		
+		}); 
+		$('#btn2').click(function2(){
+		$('select[id^="S"]').val("${defaultListRowCnt}");		
+		
+		});
 	
 </script>
 <head>
@@ -90,7 +94,49 @@
 	}
 </style>
 <script>
-
+$(function(){
+	$("#btn1").click(function(){
+		$("tr:nth-child(2n)").css("background-color", "lightgray");
+    	$("tr:nth-child(2n+1)").css("background-color", "white");
+	});
+	//body > div > table > tbody > tr:nth-child(1) > td:nth-child(2)
+	$("#btn2").click(function(){
+		$("tr > td:nth-child(2):contains('S')").css("color", "red");
+	});
+	$("#btn3").click(function(){
+		$("tr td:contains('S')").css("color", "red");
+    	
+	});
+	$("#btn4").on("click", function(){
+		var selector = "tr > td:nth-child(5)";
+		
+		$(selector).each(function(index, item){
+			var sal = parseInt($(item).html()) + 1;
+			if(sal >= 5000) {
+				$(item).css("background-color", "lightgreen")
+			}
+		}); 
+		
+	});
+	
+	var str="";
+	var arr=["AD_PRES","AD_VP","IT_PROG","FI_ACCOUNT","PU_MAN","PU_CLERK"];
+	$.each(arr, function(index, item){
+		consol.log(item);
+		str += "<option>"+item"</option>";
+	});
+	
+	$("#jobs").html(str);//html():jQuery함수, js의 innerHTML과 비슷한역할
+	console.log(str);
+	
+	
+	$("select").change(function(){
+		var jobid = $(this).val();
+		//init();
+		$("tr td").css("color","black");
+		$("tr td:contains('" + jobid + "')").css("color", "red");
+		});
+});
 </script>
 </head>
 
@@ -105,8 +151,15 @@ type="button" class="btn btn-success">직원등록</button>
 <hr>
 <button id="btn1">짝수row선택</button>
 <button id="btn2">이름 S로 시작하는 직원</button>
-
-<hr>
+	<button id="btn3">S문자가 포함</button>
+	<button id="btn4">급여5000이상</button>
+	<button id="btn5">직원 번호가 홀수인 사람 선택</button>
+	<!-- 동적으로 만들기 -->
+	<select id="jobs">
+	
+	</select>
+	<hr>
+	
 <table  class="table table-hover">
 
  <thead>

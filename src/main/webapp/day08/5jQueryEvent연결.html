@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="../js/jquery-3.6.4.min.js"></script>
+
+<style>
+	.enter{background-color: orange; color: blue;}
+	.leave{background-color: pink; color: white;}
+</style>
+
+<script>
+$(function(){
+	
+	//on():이벤트와 이벤트헨들러를 연결
+	$("h1").on("mouseenter", function(){
+		$(this).removeCLass("leave");
+		$(this).addClass("enter");
+	});
+	
+	$("h1").on("mouseleave", function(){
+		$(this).removeClass("enter");
+		$(this).addClass("leave");
+	});
+	
+	/*
+	var obj = {};
+	obj.mouseenter = function(){
+		$(this).removeClass("leave");
+		$(this).addClass("enter");
+		
+	}
+	
+	obj.mouseenter = function(){
+		$(this).removeClass("enter");
+		$(this).addClass("leave");
+		
+	};
+	$("h1").on(obj);
+	*/
+	
+	$("h1").hover(function(){
+		$(this).removeClass("leave");
+	});
+	
+	$("div").on("click",function(){
+		//var h = $(this).find("h1").text();
+		//var p = $(this).find("p").text();
+		
+		//this는 context이다. selector가 적용하는 범위이다.
+		var h= $("h1",this).text();
+		var p= $("p",this).text();
+
+		alert(h+"---"+p);
+	});
+
+});
+</script>
+<style>
+	div{border: 1px solid green; padding: 20px;}
+</style>
+</head>
+<body>
+<h1>jQuery event연습</h1>
+<div>
+	<h1>jQuery event연습</h1>
+	<p onclick="alert('pppppp');">현재 객체</p>
+</div>
+
+<form  id="frm" action="1.jsp" > <!--  서버에 전송을 취소하는것.-->
+	아이디: <input type="text" name="userid">
+	비밀번호: <input type="pass" name="userpass">
+	<input type="submit" value="서버로 전송">
+</form>
+<hr>
+<button id="btn1">버튼1</button>
+<button id="btn2">버튼2</button>
+<hr>
+
+<script>
+
+	$(function(){
+		
+		$("#all-check").change(function(){
+			if(this.checked){
+				$("#check-item").children().prop("checked", true);
+			}else{
+				$("#check-item").children().prop("checked", false);
+			}
+			
+		});
+		$("#btn1").click(function(){
+			alert("btm1을 누름");
+		});
+		$("#btn2".click(function(){
+			$("#btn1").click();
+		});
+		
+		
+		$("p").on("click", function(event){
+			alert("P!!!!!!!!!!!!!");
+			console.log(event.pageX, event.pageY);
+			event.stopPropagation(); //이벤트전달막기(캡처링, 버블링 취소)
+		});
+		
+		
+		$("#frm").on("submit", function(){
+			alert("subtmit_________!");
+			
+			
+			var id = $("input[name='userid']").val();
+			var pw = $("input[name='userpass']").val();
+			alert(id+ ":"+ pw);
+			//js부분
+			if(id.length<5)
+				event.preventDefault(); //default이벤트 제거
+		});//event랑 이벤트핸들러를 연결
+		
+	});
+
+	/*
+	frm.onsubmit = function(){
+		var id = $("input[name='userid']").val();
+		var pw = $("input[name='userpass']").val();
+		alert(id+ ":"+ pw);
+		
+		if(id.length<5) return false;//서버에 전송 취소
+	}*/
+	
+	function call(){
+		var id = $("input[name='userid']").val();
+		var pw = $("input[name='userpass']").val();
+		alert(id+ ":"+ pw);
+		
+		if(id.length<5) return false;//서버에 전송 취소
+	}
+</script>
+</body>
+</html>

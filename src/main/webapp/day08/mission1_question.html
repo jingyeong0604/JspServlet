@@ -25,87 +25,40 @@
 			border:5px solid #ff0000;
 		}
 	</style>
-	<script src="../js/jquery-3.6.4.min.js"></script>
 	<script>
-
-	
-	$(function(){
-	 	f1();
-	 	f2();
-	 	f3();
-	 	f4();
-	 	f5();
-	 	f6();
-	}
-	
-	
-	
-	function f1(){
-		$("#m_1").css("color","red");
-	
-	}
-	
-	function f2(){
-		
-		$("#m_2").addClass("active");
-	}
-
-	function f3(){//querySelector로 아이디를 찾음.
-		$("#m_3 img:nth-child(even)").attr("src", "ch3.png");
-		
-	
-	}
-	
-	
-	function f4(){
-		var f=document.querySelector("#m_4");
-		/*var element=document.createElement("p");
-		var tNode = document.createTextNode("항목4");
-		pNode.appendChild(tNode);
-		m.appendChild(pNode);
-		
-		f.innerHTML +="<p>항목4</p>";*/
-		$("#m_4").append("<p>항목4</p>");
-		
-	}
-	
-	function f5(){
-		/*
-		var ps=document.querySelectorAll("#m_5 p");
-		for(let i=0; i<ps.length; i++){
-			if(ps[i].innerHTML.indexOf("항목4")>=0){
-				ps[i].parentNode.removeChild(ps[i]);
-			}
-		}*/
-		
-		$("#m_5 p:contains('항목4')").remove();
-	}
-	
-	function f6(){
-		$("#m_5 p:contains('항목4')").remove();
-	}
-
-		/*window.onload=function(){
+		window.onload=function(){
 		 	f1();
 		 	f2();
 		 	f3();
 		 	f4();
 		 	f5();
 		 	f6();
-		}*/
-	
-			/*
+		}
 		function f6(){
 			var m = document.querySelector("#m_6");
 			m.parentNode.parentNode.removeChild(m.parentNode);
 		}
-	
+		function f1(){
+			var m=document.querySelector("#m_1");
+			m.style.color="red";
+		}
+		function f2(){
+			var m=document.querySelector("#m_2");
+			m.className="active";
+		}
+		function f3(){//querySelector로 아이디를 찾음.
+			var imgs=document.querySelectorAll("#m_3 img:nth-child(even)");//짝수번째만 바꾸기
+			for(var i in imgs){
+				imgs[i].src="ch3.png";
+			}
+			/*
 			var elementNode = document.createElement("img");
 			var imgName="../day06/ch3.png";
 			elementNode.src=imgName;
 			var here = document.getElementById("m_3");
 			here.appendChild(elementNode);
-			here.innerHTML += `<img src "${imgName}">`;
+			here.innerHTML += `<img src "${imgName}">`;*/
+		}
 		
 		function f4(){
 			var f=document.querySelector("#m_4");
@@ -113,7 +66,7 @@
 			var tNode = document.createTextNode("항목4");
 			pNode.appendChild(tNode);
 			m.appendChild(pNode);
-			
+			*/
 			f.innerHTML +="<p>항목4</p>";
 		}
 		
@@ -125,28 +78,7 @@
 				}
 			}
 		}
-		function f1(){
-			var m=document.querySelector("#m_1");
-			m.style.color="red";
-		}
-		
-		function f2(){
-			var m=document.querySelector("#m_2");
-			m.className="active";
-		}
-		
-		function f3(){//querySelector로 아이디를 찾음.
-			var imgs=document.querySelectorAll("#m_3 img:nth-child(even)");//짝수번째만 바꾸기
-			for(var i in imgs){
-				imgs[i].src="ch3.png";
-			}*/
-	/*	
-	
-		*/
-		
-		
-		
-		
+		 
 	</script>
 </head>
 
