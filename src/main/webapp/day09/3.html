@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="../js/jquery-3.6.4.min.js"></script>
+<script>
+$(() =>{
+	
+	$("#btn2").on("click", ()=>{
+		
+		// 위 $.get() 호출 결과에 따라 'response' 또는 'Error' 출력
+		getData().then(function(data) {
+		console.log(data); // response 값 출력
+		}).catch(function(err) {
+		console.error(err); // Error 출력
+		});
+		
+		function getData() {
+			return new Promise(function(resolve, reject) {
+				$.get('job.jsp', function(response) {
+					if (response) {
+						resolve(response);
+				//Fulfilled(이행) : 비동기 처리가 완료되어 프로미스가 결과 값을 반환해준 상태
+						}		
+					reject(new Error("Request is failed"));
+		//Rejected(실패) : 비동기 처리가 실패하거나 오류가 발생한 상태
+				});
+				});
+			}
+		});
+	
+	
+	$("#btn1").on("click",()=>{
+		$.ajax({
+			url:"job.jsp",
+			//job_id를 읽어서 보냄.
+			data:{"job_id":$("#job_id").val(),
+				"job_title":$("#job_title").val(),
+				"max_salary":$("#max_salary").val(),
+				"min_salary":$("#min_salary").val()
+			},
+			method:"get",
+			//갔다가 돌아온 부분 출력하기
+			success:(result, status, xhr)=>{
+				$("#here").html(result);
+			},
+			error:()=>{}
+		});
+	});
+	
+	$("#btn3").on("click",()=>{
+		//하나씩 읽어올필요없이 한번에 읽어올 수 있음 ->serialize()
+		var param = $("form").serialize();
+		//form의 input들의 name과 value로 name=value 형태로 문자열이 만들어짐.
+		
+		$.get("job.jsp?"+param, (result)=>{
+			$("#here").html(result);
+		});
+		
+	});
+	
+	$("#btn4").on("click",()=>{
+		var param = $("form").serializeArray();
+		console.log(param);
+		//serializeArray()의 결과로 data를 만들어보세요.
+		//{:}이런 형태로 출력을 안하고 싶음.
+		
+		$.each(param, function(index, item){
+			console.log(item.name, item.value);
+			data[item.name]=item.value;
+			
+		});
+			
+			$.post("job.jsp",data, (result)=>{
+				$("#here").html(result);
+			});
+			
+		
+		});
+		
+		
+		var data={"job_id":$("#job_id").val(),
+			"job_title":$("#job_title").val(),
+			"max_salary":$("#max_salary").val(),
+			"min_salary":$("#min_salary").val()
+		};
+		$.post("job.jsp",data,(result)=>{
+			$("#here").html(result);
+		})
+	});
+	
+	
+	
+</script>
+</head>
+
+<body>
+<h1>jQuery연습</h1>
+
+<div id="here">여기</div>
+<button id="btn1">call</button>
+<button id="btn2">promise연습</button>
+<button id="btn3">get</button>
+<button id="btn4">post</button>
+
+<!-- 화면의 이동없이 실행 버튼을 누르면 화면의 이동없이 보여지는 화면에서 결과물이 나오기를 원함.-->
+<form>
+<label>job id: <input type="text" name="job_id" id="job_id" value=""/></label>
+<label>job title: <input type="text" name="job_id" id="job_id" value=""/></label>
+<label>job max Salary: <input type="number" name="max_salary" id="max_salary" value=""/></label>
+<label>job min Salary: <input type="number" name="min_salary" id="min_salary" value=""/></label>
+<input id="btn1" type="button" value="서버에 전송">
+
+</form>
+
+
+
+</body>
+</html>

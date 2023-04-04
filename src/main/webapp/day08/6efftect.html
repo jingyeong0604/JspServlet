@@ -1,47 +1,67 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<meta charset="UTF-8">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 <script>
-$(document).ready(function(){
-  $("button#btn1").click(function(){
-    $("p").show(1000, call);
-  });
-  
-  $("#btn2").click(function(){
-	    $("p").hide(1000, call);
-	  });
-  
-  $("#btn3").click(function(){
-	    $("p").toggle(1000, call);
-	  });
-  
-  $("#btn4").click(function(){
-	    $("#div1").fadeIn(1000, function(){$("#here").html($("#btn3").text());});
-	    $("#div2").fadeOut(1000, function(){$("#here").html($("#btn3").text());});
-	    $("#div3").fadeToggle(1000, function(){$("#here").html($("#btn3").text());});
-	  });
- 
-});
-
-function call(){
-	$("#here").html($(this).text());
-	
-}
+	$(document).ready(function() {
+		$("#btn1").click(function() {
+			$("p").toggle(1000, call.bind(this));
+			// 여기서의 this는 button
+			// call 함수로 넘어가면 this는 p
+			// call 함수에서의 this를 변경하는 방법: bind()
+		});
+​
+		$("#btn2").click(function() {
+			$("p").show(1000, call.bind(this));
+		});
+​
+		$("#btn3").click(function() {
+			$("p").hide(1000, call.bind(this));
+		});
+		
+		$("#btn4").click(function () {
+			$("#div1").fadeIn(1000, call.bind(this));
+		});
+		$("#btn5").click(function () {
+			$("#div2").fadeOut(1000, call.bind(this));
+		});
+		$("#btn6").click(function () {
+			$("#div3").fadeToggle(1000, call.bind(this));
+		});
+	});
+​
+	function call() {
+		$("#here").html($(this).text()); // 버튼의 value를 찍고 싶은데 this는 p가 된다 (p에 대한 toggle, show, hide니까) -> 함수.bind()로 this를 변경!
+	}
 </script>
 </head>
 <body>
-
-<button id="btn1">show</button>
-<button id="btn2">hide</button>
-<button id="btn3">toggle</button>
-<button id="btn4">fadeIn</button>
-<button id="btn5">fadeOut</button>
-<button id="btn6">toggle</button>
-<div id="here">여기</div>
-<p>This is a paragraph with little content.</p>
-<p>This is another small paragraph.</p>
-
+	<div id="here">여기</div>
+	
+	<hr>
+	<h1>W3S hide/show</h1>
+	<button id="btn1">Toggle</button>
+	<button id="btn2">Show</button>
+	<button id="btn3">Hide</button>
+​
+	<p>This is a paragraph with little content.</p>
+	<p>This is another small paragraph.</p>
+​
+	<hr>
+	<h1>W3S fade</h1>
+	<button id="btn4">FadeIn</button>
+	<button id="btn5">FadeOut</button>
+	<button id="btn6">FadeToggle</button>
+	<hr>
+	<div id="div1"
+		style="width: 80px; height: 80px; background-color: red; display:none"></div>
+	<br>
+	<div id="div2"
+		style="width: 80px; height: 80px; background-color: green;"></div>
+	<br>
+	<div id="div3"
+		style="width: 80px; height: 80px; background-color: blue;"></div>
 </body>
 </html>
