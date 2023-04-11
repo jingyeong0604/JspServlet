@@ -36,7 +36,9 @@ public class LoginCheckFilter extends HttpFilter implements Filter {
 		//AdminVO user = (AdminVO)browser.getAttribute("loginUser");
 		
 		System.out.println("req.getServletPath():" +req.getServletPath());
-		if(req.getServletPath().equals("/auth/loginCheck.do")) {
+		if(req.getServletPath().equals("/auth/loginCheck.do") || 
+				req.getServletPath().equals("/auth/signup.do") ||
+				req.getServletPath().equals("/auth/emailDupCheck.do") )  {
 			
 		}else {
 			HttpSession browser = req.getSession();

@@ -16,7 +16,7 @@ import com.shinhan.vo.EmpVO;
 /**
  * Servlet implementation class EmpInsertServlet
  */
-@WebServlet("/emp/empinsert.do")
+//@WebServlet("/emp/empinsert.do")
 public class EmpInsertServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     

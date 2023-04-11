@@ -3,6 +3,8 @@ package com.shinhan.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -21,11 +23,17 @@ import com.shinhan.vo.AdminVO;
  *  
  */
 /*확장명 .do를 붙인다.*/
-@WebServlet({"/auth/loginCheck.do"})//URL mapping주소 정의
+//@WebServlet({"/auth/loginCheck.do"})//URL mapping주소 정의
 public class loginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+	
+	List<AdminVO> userList = new ArrayList<>();
+	ServletContext app ;
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	
+		
+		app=getServletContext();
 		RequestDispatcher rd;
 		rd=request.getRequestDispatcher("login.jsp");
 		rd.forward(request, response);
@@ -42,6 +50,25 @@ public class loginServlet extends HttpServlet {
 		AdminVO admin = service.loginCheck(email, pass);
 		System.out.println(admin==null?"로그인실패": admin);
 		
+		Object obj = app.getAttribute("userlist");
+		
+		List<AdminVO> userList = null;
+		
+		if(admin!=null) {
+			if(obj==null) {
+				userList = new ArrayList<>();
+			}else {
+				userList.add(admin);
+				app.setAttribute("userList", userList);
+			}
+			userList.add(admin);
+			app.setAttribute("userList", userList);
+			
+		}
+		
+		for(AdminVO vo:userList) {
+			System.out.println(vo);
+		}
 		//응답문서만들기
 		//<meta charset="UTF-8">
 		//내가 보낼 문자는 text의 html문서라고 알려줌

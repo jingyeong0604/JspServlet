@@ -38,13 +38,13 @@ public class EmpDetailServlet extends HttpServlet {
 	}	
 		
 	
-		protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		EmpVO emp= makeEmp(request);
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		EmpVO emp = makeEmp(request);
 		EmpService service = new EmpService();
 		String message = service.empUpdate(emp);
-		
-		
+
 		response.sendRedirect("emplist.do");
 		
 		

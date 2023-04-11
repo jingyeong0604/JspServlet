@@ -1,6 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" errorPage="errorPage.jsp"%>
+<%
+//자바코드작성 service코드에 삽입된다.
+String subject="jsp코드";
 
+int age=Integer.parseInt(request.getParameter("age"));
+
+
+%>
+<%!
+//자바코드 작성...선언부...별도의 메서드로 만들어진다.
+int score=100;
+public int add(int a, int b){
+	return a+b;
+	
+}
+%>
 
 
 
@@ -16,6 +31,11 @@
 </head>
 <body>
 <h1>직원정보 입력</h1>
+<%--JSP주석 --%>
+<!-- service의 out.write() -->
+subject: <%=subject %><br>
+score: <%=score %><br>
+add함수: <%=add(100,200) %><br>
 <!-- http://localhost:9999/ -->
 <form method="post" form action="<%=request.getContextPath()%>/emp/empinsert.do"  class="mb-3">
 <table >

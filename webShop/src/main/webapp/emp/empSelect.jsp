@@ -167,12 +167,12 @@ List<EmpVO> emplist = (List<EmpVO>)request.getAttribute("empAll");
 <body>
 <div class="container mt-3">
 	<h1>직원목록</h1>
-	 <div>로그인한 사용자: ${loginUser.manager_name}</div>
-	 <button id="btnLogout">로그아웃</button>
+	<!-- include 디렉티브는 소스를 합쳐서 컴파일한다. empinsert에서 header에서 쓴것을 쓸 수 있음. -->
+	<%@ include file="../common/header.jsp" %>
 	<button 
-	onclick="location.href='emp_insert.html'"
+	onclick="location.href='empinsert.do'"
 	type="button" class="btn btn-success">직원등록</button>
-	<a type="button" class="btn btn-success" href="empinsert.do">직원등록</a>
+	<!--  <a type="button" class="btn btn-success" href="empinsert.do">직원등록</a>-->
 	<hr>
 	<button id="btn1">짝수row선택</button>
 	<button id="btn2">이름 S로 시작하는 직원</button>

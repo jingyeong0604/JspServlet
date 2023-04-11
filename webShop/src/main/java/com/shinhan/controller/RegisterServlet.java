@@ -15,7 +15,7 @@ import com.shinhan.vo.AdminVO;
 /**
  * Servlet implementation class RegisterServlet
  */
-@WebServlet("/auth/signup.do")//절대경로!!!!!!!!!!!넣는게 좋음
+//@WebServlet("/auth/signup.do")//절대경로!!!!!!!!!!!넣는게 좋음
 public class RegisterServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

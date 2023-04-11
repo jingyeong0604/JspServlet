@@ -18,7 +18,7 @@ import com.shinhan.vo.EmpVO;
 /**
  * Servlet implementation class EmpListServlet
  */
-@WebServlet("/emp/emplist.do")
+//@WebServlet("/emp/emplist.do")
 public class EmpListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
