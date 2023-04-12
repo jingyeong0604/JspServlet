@@ -4,18 +4,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!-- java code를 없앰 why????????????? --> 
-<%
-List<EmpVO> emplist = (List<EmpVO>)request.getAttribute("empAll");
-
-%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<<%--jsp:include page="${path}/common/commonfiles.jsp }"></jsp:include> --%>
+<%@ include file="../common/commonfiles.jsp" %>
+
 <style>
   /* #container{
        
@@ -168,7 +167,9 @@ List<EmpVO> emplist = (List<EmpVO>)request.getAttribute("empAll");
 <div class="container mt-3">
 	<h1>직원목록</h1>
 	<!-- include 디렉티브는 소스를 합쳐서 컴파일한다. empinsert에서 header에서 쓴것을 쓸 수 있음. -->
-	<%@ include file="../common/header.jsp" %>
+<!-- include 지시사 : 합쳐서 컴파일<%@ include file="../common/header.jsp" %> -->	
+<!-- include action tag이용: 컴파일하고 합침. -->
+	<%--  <h2><%=company %></h2>--> --%> 
 	<button 
 	onclick="location.href='empinsert.do'"
 	type="button" class="btn btn-success">직원등록</button>
@@ -202,23 +203,25 @@ List<EmpVO> emplist = (List<EmpVO>)request.getAttribute("empAll");
 	   </tr>
 	 </thead>
 	 <tbody> 
-	   <%for(EmpVO emp : emplist){%>
+	 <!-- for(EmpVO emp:empAll) -->
+	   <c:forEach items="${empAll}" var="emp">
+
 	   <tr>
-	     <td><a href="empDetail.do?empid=<%=emp.getEmployee_id() %>"><%=emp.getEmployee_id() %></a></td>
-	     <td><a href="empDetail.do?empid=<%=emp.getEmployee_id() %>"><%=emp.getFirst_name() %></a></td>
-	     <td><%=emp.getLast_name() %></td>
-	     <td><%=emp.getEmail() %></td>
-	     <td><%=emp.getSalary() %></td>
-	     <td><%=emp.getHire_date() %></td>
-	     <td><%=emp.getPhone_number() %></td>
-	     <td><%=emp.getJob_id()%></td>
-	     <td><%=emp.getManager_id() %></td>
-	     <td><%=emp.getCommission_pct() %></td>
-	     <td><%=emp.getDepartment_id() %></td>
-	     <td><button class="btnDel" data-del="<%=emp.getEmployee_id()%>">삭제</button></td>
+	     <td><a href="empDetail.do?empid=${emp.employee_id}">${emp.employee_id}</a></td>
+	     <td><a href="empDetail.do?empid=${emp.employee_id}">${emp.first_name}</a></td>
+	     <td>${emp.last_name}</td>
+	     <td>${emp.email}</td>
+	     <td>${emp.salary}</td>
+	     <td>${emp.hire_date}</td>
+	     <td>${emp.phone_number}</td>
+	     <td>${emp.job_id}</td>
+	     <td>${emp.manager_id}</td>
+	     <td>${emp.commission_pct}</td>
+	     <td>${emp.department_id}</td>
+	     <td><button class="btnDel" data-del="${emp.employee_id}">삭제</button></td>
 	   	 
 	   </tr>
-	  <%} %>
+	  	  </c:forEach>
 	</tbody> 
 	 
 	</table>

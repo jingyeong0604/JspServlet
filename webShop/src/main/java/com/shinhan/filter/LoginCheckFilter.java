@@ -36,11 +36,13 @@ public class LoginCheckFilter extends HttpFilter implements Filter {
 		//AdminVO user = (AdminVO)browser.getAttribute("loginUser");
 		
 		System.out.println("req.getServletPath():" +req.getServletPath());
+		//로그인됐나 확인
 		if(req.getServletPath().equals("/auth/loginCheck.do") || 
 				req.getServletPath().equals("/auth/signup.do") ||
 				req.getServletPath().equals("/auth/emailDupCheck.do") )  {
 			
 		}else {
+			//로그인이 안됐을경우!
 			HttpSession browser = req.getSession();
 			AdminVO user = (AdminVO)browser.getAttribute("loginUser");
 			if(user==null) {
@@ -52,7 +54,7 @@ public class LoginCheckFilter extends HttpFilter implements Filter {
 		}
 
 
-		// pass the request along the filter chain
+		// 요청
 		chain.doFilter(request, response);
 	}
 
