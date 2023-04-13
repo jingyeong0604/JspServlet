@@ -17,7 +17,8 @@ import javax.servlet.http.HttpSession;
 /**
  * Servlet implementation class FrontController
  */
-@WebServlet("*.do")
+@WebServlet("*.do")//이 부분 덕분에 .do인것은 모두 frontcontroller를 지남
+//이게 없었으면 그냥 일반적인 서블릿과 똑같았다!
 public class FrontController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -36,6 +37,19 @@ public class FrontController extends HttpServlet {
 		data.put("request", request);//안해주면 request는 null로 들어감.
 		
 		switch(path) {//요청하고자하는 서블릿 path가 무엇인지
+		case "/download.do":
+			data.put("response", response);
+			controller = new DownloadController();
+			break;
+			
+		case "/upload.do":
+			controller = new UploadController();
+			break;
+			
+		case "/jstl.do":
+			controller = new JSTLController();
+			break;
+			
 		case "/auth/loginCheck.do":
 			controller = (CommonControllerInterface) new LoginController();
 			break;
@@ -69,6 +83,7 @@ public class FrontController extends HttpServlet {
 		String page=null;
 		try {
 			page = controller.execute(data);
+			System.out.println("$$$$$$$$$$$$$"+page);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -90,6 +105,8 @@ public class FrontController extends HttpServlet {
 			response.sendRedirect(page.substring(9));// -> auth/loginCheck.do
 		}else if(page.indexOf("responseBody:")>=0){
 			response.getWriter().append(page.substring(13));
+		}else if(page.indexOf("download")>=0){
+			response.getWriter().append("download OK");
 		}
 		else {
 			RequestDispatcher rd;

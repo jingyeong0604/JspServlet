@@ -5,6 +5,8 @@
     pageEncoding="UTF-8"%>
 <!-- java code를 없앰 why????????????? --> 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
@@ -12,8 +14,9 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-<<%--jsp:include page="${path}/common/commonfiles.jsp }"></jsp:include> --%>
+<%--jsp:include page="${path}/common/commonfiles.jsp }"></jsp:include> --%>
 <%@ include file="../common/commonfiles.jsp" %>
+
 
 <style>
   /* #container{
@@ -166,14 +169,24 @@
 <body>
 <div class="container mt-3">
 	<h1>직원목록</h1>
+	 <form method="post"  action="${path }/downloadTest/result.jsp" >
+	 <input type=hidden  name="param1" value="p1.png" /> <br>
+	 <input type=hidden  name="param2" value="p2.png" /> <br>
+   	 <input type ="submit" value="이미지 다운로드">	 
+	 </form>
 	<!-- include 디렉티브는 소스를 합쳐서 컴파일한다. empinsert에서 header에서 쓴것을 쓸 수 있음. -->
-<!-- include 지시사 : 합쳐서 컴파일<%@ include file="../common/header.jsp" %> -->	
+  <!-- include 지시사 : 합쳐서 컴파일 -->
+  <%@ include file="../common/header.jsp" %>   
 <!-- include action tag이용: 컴파일하고 합침. -->
 	<%--  <h2><%=company %></h2>--> --%> 
 	<button 
-	onclick="location.href='empinsert.do'"
+	onclick="location.href='${path}/emp/empinsert.do'"
 	type="button" class="btn btn-success">직원등록</button>
 	<!--  <a type="button" class="btn btn-success" href="empinsert.do">직원등록</a>-->
+	<button type="button" class="btn btn-primary" 
+	data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Modal 이용 직원등록</button>
+	<%@ include file="empInsertModal.jsp" %>
+	
 	<hr>
 	<button id="btn1">짝수row선택</button>
 	<button id="btn2">이름 S로 시작하는 직원</button>
@@ -184,15 +197,24 @@
 	   
 	</select>
 	<hr>
-	
-	<table class="table table-hover">
+		<form method="post" action="${path }/downloadTest/result.jsp">
+			<!-- 이름이 가는 것이다. -->
+			<input type=hidden name="param1" value="watch.jpg" /> <br> 
+			<input
+				type=hidden name="param2" value="umbrella.jpg" /> <br> 
+				<input
+				type="submit" value="이미지 다운로드">
+		</form>
+		<table class="table table-hover">
 	  <thead>
 	   <tr>
+	   	 <th>순서</th>
 	     <th>직원번호</th>
 	     <th>이름</th>
 	     <th>성</th>
 	     <th>이메일</th>
 	     <th>급여</th>
+	     <th>누적 급여</th>
 	     <th>입사일</th>
 	     <th>전화번호</th>
 	     <th>직책</th>
@@ -204,19 +226,35 @@
 	 </thead>
 	 <tbody> 
 	 <!-- for(EmpVO emp:empAll) -->
-	   <c:forEach items="${empAll}" var="emp">
-
+<!-- 	 c태그는 실행되고 없어지는 태그임 -->
+	 	<c:set var="totalSalary" value="0"/>
+	   <c:forEach items="${empAll}" var="emp" varStatus="status">
+	   <c:set var="totalSalary" value="${totalSalary+ emp.salary} "/>
 	   <tr>
+	     <td style="background-color: ${status.first||status.last?'#E2A9F3':'#F8E0EC'};">${status.count }</td>
 	     <td><a href="empDetail.do?empid=${emp.employee_id}">${emp.employee_id}</a></td>
 	     <td><a href="empDetail.do?empid=${emp.employee_id}">${emp.first_name}</a></td>
+	     
 	     <td>${emp.last_name}</td>
-	     <td>${emp.email}</td>
+	     
+
+<%-- <td>${emp.email}
+ ${fn:substring(emp.email,0,3)}**
+ ${fn:indexOf(emp.email,"@")}**
+ ${fn:indexOf(emp.email,"@")>=0?fn:substring(emp.email,0,3):emp.email}
+ ${fn:substring(emp.email,0,${fn:emp.email.indexOf("@")>0?emp.email.indexOf("@"):emp.email.length()})}
+ </td> --%>
 	     <td>${emp.salary}</td>
+	    
+	     <td>${totalSalary}</td>
 	     <td>${emp.hire_date}</td>
 	     <td>${emp.phone_number}</td>
 	     <td>${emp.job_id}</td>
 	     <td>${emp.manager_id}</td>
-	     <td>${emp.commission_pct}</td>
+	 
+	     <td>${emp.commission_pct}
+	     	<format:formatNumber type="percent" value="${emp.commission_pct}"/>
+	     </td>
 	     <td>${emp.department_id}</td>
 	     <td><button class="btnDel" data-del="${emp.employee_id}">삭제</button></td>
 	   	 

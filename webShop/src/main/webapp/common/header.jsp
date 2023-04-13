@@ -38,6 +38,7 @@ String company="신한금융소프트아카데미";
 		 --%>
 	<c:if test="${loginUser!=null }">
 		<input type="button" value="로그아웃" id="btnLogout">
+		<img src="${path}/uploads/${loginUser.pic}"/>
 	</c:if>
 	<c:if test="${loginUser==null }">
 		<button onclick="location.href='${path}/auth/loginCheck.do'">로그인</button>

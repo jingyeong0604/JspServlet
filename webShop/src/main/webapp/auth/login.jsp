@@ -52,7 +52,7 @@ $(function(){
 <h2>Weekly Coding Challenge #1: Sign in/up Form</h2>
 <div class="container" id="container">
   <div class="form-container sign-up-container">
-    <form method="post" form action="<%=request.getContextPath()%>/auth/signup.do"><!-- 아무런 태그가 없어서 get방식 ->비번이 잇으므로 post로 바꾸기-->
+    <form method="post" enctype="multipart/form-data" action="<%=request.getContextPath()%>/auth/signup.do"><!-- 아무런 태그가 없어서 get방식 ->비번이 잇으므로 post로 바꾸기-->
       <h1>Create Account</h1>
       <div class="social-container">
         <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
@@ -65,6 +65,7 @@ $(function(){
       <span id="message"></span>
       <input type="button" id="emailDupCheck" value="중복체크" />
       <input type="password" name="pass" placeholder="Password" />
+      <input type="file" name="pic">
       <button>Sign Up</button>
     </form>
   </div>

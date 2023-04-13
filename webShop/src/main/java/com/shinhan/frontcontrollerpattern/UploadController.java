@@ -2,41 +2,36 @@ package com.shinhan.frontcontrollerpattern;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
-import com.shinhan.model.AdminService;
-import com.shinhan.vo.AdminVO;
-
-public class EmpSignUpController implements CommonControllerInterface {
+public class UploadController implements CommonControllerInterface {
 
 	@Override
 	public String execute(Map<String, Object> data) throws Exception {
 		HttpServletRequest request = (HttpServletRequest) data.get("request");
+		String method=(String)data.get("method");
+		if(method.equals("GET")) {
+			return "uploadTest/uploadForm.jsp";
+		}else {
+			//doHandle로 넘어감.
+			doHandle(request);
+			return "/";
+		}
 		
-	
-		AdminService service = new AdminService();
-		
-		int result = service.registerAdmin(doHandle(request));
-		
-		
-		return "redirect:loginCheck.do";
 	}
-	
-	private AdminVO doHandle(HttpServletRequest request)
+
+	private void doHandle(HttpServletRequest request)
 			throws ServletException, IOException {
 
-//		
-		AdminVO vo=new AdminVO();
-		
 		String encoding = "utf-8";
 		
 		String currentPath = request.getServletContext().getRealPath("uploads");
@@ -55,22 +50,7 @@ public class EmpSignUpController implements CommonControllerInterface {
 
 				if (fileItem.isFormField()) {
 					System.out.println(fileItem.getFieldName() + "=" + fileItem.getString(encoding));
-					String colName = fileItem.getFieldName();
-					String colValue=fileItem.getString(encoding);
-					if (colName.equals("manager_name"))
-						vo.setManager_name(colValue);
-					if (colName.equals("email"))
-						vo.setEmail(colValue);
-					if (colName.equals("pass"))
-						vo.setPass(colValue);
-
-					
-
 				} else {
-//					String mname = request.getParameter("manager_name");
-//					String email = request.getParameter("email");
-//					String pass = request.getParameter("pass");
-//					
 					System.out.println("getFieldName:" + fileItem.getFieldName());
 					System.out.println("getName:" + fileItem.getName());
 					System.out.println("getSize:" + fileItem.getSize() + "bytes");
@@ -83,16 +63,12 @@ public class EmpSignUpController implements CommonControllerInterface {
 						String fileName = fileItem.getName().substring(idx + 1);
 						File uploadFile = new File(currentDirPath + "\\" + fileName);
 						fileItem.write(uploadFile);
-						
-						vo.setPic(fileName);
 					} // end if
 				} // end if
 			} // end for
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println("adminvo: "+vo);
-		return vo;
 	}
 
 }

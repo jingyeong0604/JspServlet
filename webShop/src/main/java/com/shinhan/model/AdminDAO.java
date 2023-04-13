@@ -47,7 +47,7 @@ public class AdminDAO {
 	public AdminVO loginCheck(String email, String pass) {
 		//검증하는 sql 문
 		AdminVO admin = null;
-		String sql="select manager_name from admins where email=? and pass=?";
+		String sql="select * from admins where email=? and pass=?";
 		
 		
 	 
@@ -64,7 +64,11 @@ public class AdminDAO {
 				//rs.getString(1) 
 				//sql쿼리에서 가져오기때문에 manager_name만 선택했기때문에 첫번째가 온다.
 				//전체 컬럼을 다 가져올 경우에는 컬럼 이름 혹은 컬럼안에 몇번째인지 !!
-				admin = new AdminVO(email, rs.getString(1), pass);
+				admin = new AdminVO();
+				admin.setEmail(email);
+				admin.setManager_name(rs.getString("manager_name"));
+				admin.setPass(pass);
+				admin.setPic(rs.getString("pic"));
 				
 			}
 		} catch (SQLException e) {
@@ -78,13 +82,14 @@ public class AdminDAO {
 	
 	public int registerAdmin(AdminVO admin) {
 		int result = 0;
-		String sql = " insert into admins(email,pass,manager_name) values(?,?,?)";
+		String sql = " insert into admins(email,pass,manager_name,pic) values(?,?,?,?)";
 		conn = OracleUtil.getConnection();
 		try {
 		st = conn.prepareStatement(sql);
 		st.setString(1, admin.getEmail());
 		st.setString(2, admin.getPass());
 		st.setString(3, admin.getManager_name());
+		st.setString(4, admin.getPic());
 		result = st.executeUpdate();
 		} catch (SQLException e) {
 		// TODO Auto-generated catch block
