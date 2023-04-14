@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" errorPage="errorPage.jsp"%>
+    
 <%
 //자바코드작성 service코드에 삽입된다.
 String subject="jsp코드";
@@ -29,6 +30,7 @@ public int add(int a, int b){
 ​
 </head>
 <body>
+<%@ include file="../common/header.jsp" %>
 <h1>직원정보 입력</h1>
 <%--JSP주석 --%>
 <!-- service의 out.write() -->
@@ -36,7 +38,7 @@ subject: <%=subject %><br>
 score: <%=score %><br>
 add함수: <%=add(100,200) %><br>
 <!-- http://localhost:9999/ -->
-<form method="post" form action="<%=request.getContextPath()%>/emp/empinsert.do"  class="mb-3">
+<form method="post" action="<%=request.getContextPath()%>/emp/empinsert.do"  class="mb-3">
 <table >
   <tr  class="form-floating">
     <td><label for="employee_id">직원번호</label></td>
@@ -73,11 +75,24 @@ add함수: <%=add(100,200) %><br>
   </tr>
   <tr>
     <td>부서</td>
-    <td><input type="number" name="department_id" value="60"></td>
+    <td>
+	    <select name="department_id">
+			<c:forEach items="${deptList}" var="dept">
+				<option value="${dept.department_id}">${dept.department_name}</option>
+			</c:forEach>
+		</select>
+	</td>
   </tr>
   <tr>
     <td>메니져</td>
-    <td><input type="number" name="manager_id"  value="100"></td>
+	<td>
+		<select name="manager_id">
+			<c:forEach items="${managerList}" var="manager">
+			
+				<option value="${manager.employee_id}">${manager.first_name}----${manager.last_name}</option>
+			</c:forEach>
+		</select>
+	</td>
   </tr>
   <tr>
     <td>커미션</td>
@@ -91,8 +106,13 @@ add함수: <%=add(100,200) %><br>
   </tr>
   <tr>
     <td>직급</td>
-    <td><input type="text" name="job_id" required="required" 
-    value="IT_PROG"></td>
+    <td>
+		<select name="job_id">
+			<c:forEach items="${jobList}" var="job">
+				<option value="${job.job_id}">${job.job_title}</option>
+			</c:forEach>
+		</select>
+		</td>
   </tr>
   <tr style="text-align: center;">
     <td colspan="2">

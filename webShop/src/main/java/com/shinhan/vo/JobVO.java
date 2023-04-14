@@ -6,14 +6,14 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+@ToString
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
-@AllArgsConstructor
-@ToString
-public class DeptVO {
-	 int department_id;
-	 String department_name;
-	 int manager_id;
-	 int location_id;
+public class JobVO {
+	 private String job_id;
+	 private String job_title;
+	 private int min_salary;
+	 private int max_salary;
 }

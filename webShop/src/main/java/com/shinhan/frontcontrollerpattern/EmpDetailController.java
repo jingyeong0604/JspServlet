@@ -6,6 +6,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.shinhan.model.CompanyService;
 import com.shinhan.model.EmpService;
 import com.shinhan.util.DateUtil;
 import com.shinhan.vo.EmpVO;
@@ -25,7 +26,16 @@ public class EmpDetailController implements CommonControllerInterface {
 			EmpVO emp = service.selectById(empid);
 
 			request.setAttribute("emp", emp);
-
+			
+			//GET...부서, 직책, 매니저를 선택하고자 한다.
+			
+			CompanyService companyservice = new CompanyService();
+			request.setAttribute("deptList", companyservice.deptSelectAll());
+			request.setAttribute("managerList", companyservice.managerSelectAll());
+			request.setAttribute("jobList", companyservice.jobSelectAll());
+			
+			
+			
 		} else {
 			EmpVO emp = makeEmp(request);
 			EmpService service = new EmpService();

@@ -37,6 +37,25 @@ public class FrontController extends HttpServlet {
 		data.put("request", request);//안해주면 request는 null로 들어감.
 		
 		switch(path) {//요청하고자하는 서블릿 path가 무엇인지
+		
+		case "/site-result/managerAjax.do":
+			controller = new AdminPicAjaxController();
+			break;
+		
+		
+		
+		case "/site-result/picAjax.do":
+			controller = new AdminPicAjaxController();
+			break;
+		
+		case "/site-result/jobsAjax.do":
+			controller = new JobsAjaxController();
+			break;
+		
+		case "/site-result/layout.do":
+			controller = new LayoutTestController();
+			break;
+		
 		case "/download.do":
 			data.put("response", response);
 			controller = new DownloadController();

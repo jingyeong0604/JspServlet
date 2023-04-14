@@ -1,5 +1,6 @@
 package com.shinhan.model;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -18,7 +19,7 @@ public class EmpDAO {
 	Connection conn;
 	Statement st;
 	PreparedStatement pst; //?지원
-	java.sql.CallableStatement cst;//sp지원
+	CallableStatement cst;//sp지원
 	ResultSet rs; //결과값을 넣어야함
 	int resultCount; //insert, update, delete건수
 	
